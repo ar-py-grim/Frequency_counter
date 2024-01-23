@@ -7,3 +7,6 @@ Software Required
 
 Use this code to simulate in Proteus frequency of analog signals in range from 10-1000Hz
 
+Demo video link
+
+https://www.youtube.com/watch?v=4AFKuE7tHIM
