@@ -28,15 +28,15 @@ void Display()
 
 void lcd_init()
 {
-	display = 0x38;
+	display = 0x38;   // 2 lines, 8-bit, (D0-D7)
 	command();
-	display = 0x01;
+	display = 0x01;   // clear display
 	command();
-	display = 0x0C;
+	display = 0x0C;   // display on, cursor off
 	command();
-	display = 0x06;
+	display = 0x06;   // increment cursor to right
 	command();
-	display = 0x80;
+	display = 0x80;   // move cursor to beginning of first line
 	command();
 }
 
