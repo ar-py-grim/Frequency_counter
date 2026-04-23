@@ -43,9 +43,9 @@ void lcd_init()
 
 int main(void)
 {
-	double Time=0;
-	float value=0;
-	float frequency=0;
+	double Time = 0;
+	float value = 0;
+	float frequency = 0;
 	int F;
 	char i[15];
 	char z[15] = "Frequency =";
@@ -64,8 +64,8 @@ int main(void)
 		
 		TCCR1B = 0x01;                   // Internal Timer On
 		
-		while ((PINB&0x01)==0x01); // Read on  Wave T0 . Waiting For HIGH signal
-		while ((PINB&0x01)==0x00); // Read on Wave T0  . Waiting For LOW  signal
+		while ((PINB & 0x01) == 0x01); // Read on  Wave T0 . Waiting For HIGH signal
+		while ((PINB & 0x01) == 0x00); // Read on Wave T0  . Waiting For LOW  signal
 		
 		TCNT1 = 0x00;
 		
