@@ -8,10 +8,10 @@
 
 void command()
 {
-	PORTC=PORTC & ~ (1<<0);   // RS
-	PORTC=PORTC & ~ (1<<1) ;  // RW
-	PORTC=PORTC  | (1<<2);    // Enable
-	PORTC=PORTC & ~(1<<2);
+	PORTC = PORTC & ~ (1<<0);   // RS
+	PORTC = PORTC & ~ (1<<1) ;  // RW
+	PORTC = PORTC | (1<<2);    // Enable
+	PORTC = PORTC & ~(1<<2);
 	_delay_ms(10);
 }
 
@@ -31,10 +31,10 @@ void lcd_init()
 
 void Display()
 {
-	PORTC=PORTC | (1<<0);
-	PORTC=PORTC & ~ (1<<1);
-	PORTC=PORTC  | (1<<2);
-	PORTC=PORTC & ~(1<<2);
+	PORTC = PORTC | (1<<0);
+	PORTC = PORTC & ~ (1<<1);
+	PORTC = PORTC | (1<<2);
+	PORTC = PORTC & ~(1<<2);
 	_delay_ms(10);
 }
 
@@ -51,7 +51,7 @@ int main(void)
 	DDRB = 0x00;
 	lcd_init();
 	
-	for (int k=0;k<13;k++)
+	for (int k=0; k<13; k++)
 	{
 		display = z[k];
 		Display();
@@ -60,7 +60,7 @@ int main(void)
 	while(1)
 	{
 		
-		TCCR1B=0x01;                   // Internal Timer On
+		TCCR1B = 0x01;                   // Internal Timer On
 		
 		while ((PINB&0x01)==0x01); // Read on  Wave T0 . Waiting For HIGH signal
 		while ((PINB&0x01)==0x00); // Read on Wave T0  . Waiting For LOW  signal
@@ -85,7 +85,7 @@ int main(void)
 		display = 0x8C;
 		command();
 		
-		for (int k=0;k<strlen(i)+1; k++)
+		for (int k=0; k<strlen(i)+1; k++)
 		{
 			display = i[k];
 			Display();
