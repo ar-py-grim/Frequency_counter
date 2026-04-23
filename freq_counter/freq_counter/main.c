@@ -49,8 +49,8 @@ int main(void)
 	int F;
 	char i[15];
 	char z[15] = "Frequency =";
-	DDRD = DDRC = 0xFF;
-	DDRB = 0x00;
+	DDRD = DDRC = 0xFF;  // set as output (for LCD)
+	DDRB = 0x00;         // set as input (receives the signal)
 	lcd_init();
 	
 	for (int k=0; k<13; k++)
@@ -62,18 +62,18 @@ int main(void)
 	while(1)
 	{
 		
-		TCCR1B = 0x01;                   // Internal Timer On
+		TCCR1B = 0x01;   // Internal Timer On
 		
-		while ((PINB & 0x01) == 0x01); // Read on  Wave T0 . Waiting For HIGH signal
-		while ((PINB & 0x01) == 0x00); // Read on Wave T0  . Waiting For LOW  signal
+		while ((PINB & 0x01) == 0x01);   // Read on Wave T0, Waiting For HIGH
+		while ((PINB & 0x01) == 0x00);   // Read on Wave T0, Waiting For LOW
 		
 		TCNT1 = 0x00;
 		
-		TCCR0 = 0x06;              // TIMER 0. DEFINE ON FALLING EDGE
+		TCCR0 = 0x06;    // TIMER 0. DEFINE ON FALLING EDGE
 		TCNT0 = 0x00;
 		
-		while ((PINB&0x01)==0x01); // Read on Wave T0  . Waiting For HIGH
-		while ((PINB&0x01)==0x00); // Read on Wave T0  . Waiting For LOW
+		while ((PINB & 0x01) == 0x01);   // Read on Wave T0, Waiting For HIGH
+		while ((PINB & 0x01) == 0x00);   // Read on Wave T0, Waiting For LOW
 		
 		value = TCNT1;
 		
@@ -84,7 +84,7 @@ int main(void)
 		
 		sprintf(i, "%d", F);
 		
-		display = 0x8C;
+		display = 0x8C;    // moves the cursor to position 12 of line 1
 		command();
 		
 		for (int k=0; k<strlen(i)+1; k++)
