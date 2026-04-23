@@ -10,10 +10,21 @@ void command()
 {
 	PORTC = PORTC & ~ (1<<0);   // RS
 	PORTC = PORTC & ~ (1<<1) ;  // RW
+	PORTC = PORTC | (1<<2);     // Enable
+	PORTC = PORTC & ~(1<<2);
+	_delay_ms(10);
+}
+
+
+void Display()
+{
+	PORTC = PORTC | (1<<0);    // RS
+	PORTC = PORTC & ~ (1<<1);  // RW
 	PORTC = PORTC | (1<<2);    // Enable
 	PORTC = PORTC & ~(1<<2);
 	_delay_ms(10);
 }
+
 
 void lcd_init()
 {
@@ -27,15 +38,6 @@ void lcd_init()
 	command();
 	display = 0x80;
 	command();
-}
-
-void Display()
-{
-	PORTC = PORTC | (1<<0);
-	PORTC = PORTC & ~ (1<<1);
-	PORTC = PORTC | (1<<2);
-	PORTC = PORTC & ~(1<<2);
-	_delay_ms(10);
 }
 
 
